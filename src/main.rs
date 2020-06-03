@@ -17,7 +17,12 @@ fn main() {
 
     io::stdin().read_line(&mut guess)
         .expect("Failed to read line");
-
+    // ちょっと待って下さい、既に guess を定義してありますよね? してあります、が、
+    // Rustでは以前の guess の定義を新しいもので「隠す」ことが出来ます
+    // (訳注: このように隠すことをシャドーイングといいます)。 まさにこのように、
+    // 最初 String であった guess を u32 に変換したい、というような状況でよく使われます。 
+    // シャドーイングのおかげで guess_str と
+    // guess のように別々の名前を考える必要はなくなり、 guess の名前を再利用出来ます。
     let guess: u32 = guess.trim().parse()
         .expect("Please type a number!");
 
